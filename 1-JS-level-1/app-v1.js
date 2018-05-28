@@ -1,7 +1,6 @@
 
 
 function sessionStart() {
-
     let tnr = {
         name: 'Nag',
         doTeach: function () {
@@ -14,7 +13,6 @@ function sessionStart() {
             return doLearn;
         }
     };
-
     let e1 = { name: 'A' }
     let e2 = { name: 'B' }
 
@@ -22,7 +20,6 @@ function sessionStart() {
 
     learnFunc.call(e1);
     learnFunc.call(e2);
-
 }
 
 sessionStart();

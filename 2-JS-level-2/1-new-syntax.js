@@ -3,8 +3,6 @@
 //----------------------------------------
 // => de-structuring
 //----------------------------------------
-
-
 // A. Object
 
 // let person = {
@@ -12,7 +10,7 @@
 //     age: 34
 // };
 
-// manual
+// manual de-structuring
 // let myName = person.name;
 // let myAge = person.age;
 
@@ -38,6 +36,7 @@
 // or
 
 // let [n1, n2, n3 = 300, , n5, [n6, n7]] = nums;
+
 
 //----------------------------------------
 // => spread operator
@@ -94,10 +93,10 @@
 
 // person2['say Name']();
 
+
 //----------------------------------------
 // => arrow-function
 //----------------------------------------
-
 
 // let getPrice = function () {
 //     return 100 + 200;
@@ -131,14 +130,12 @@
 
 
 /*
-
     why/where we need arrow-functions ?
-
     ==> to make compact-function argument
     ==> to capture 'this'
-
 */
 
+//----------------------------------------
 
 // ==> to make compact-function argument
 
@@ -150,7 +147,7 @@
 // or
 // nums.sort((a, b) => a - b);
 
-
+//----------------------------------------
 
 // ==> to capture 'this'
 
@@ -161,8 +158,12 @@
     regular-functions statically & dynamically
     we can bind to any object
 
-*/
+    arrow-function :
 
+        => always bound to creator
+
+*/
+//----------------------------------------
 
 // let tnr = {
 //     name: 'Nag',
@@ -185,7 +186,6 @@
 
 // let tmpTnr = { name: 'Praveen' }
 // askQues('Q2');
-
 
 //------------------------------------------------
 
@@ -240,6 +240,7 @@
 // complete();
 
 //------------------------------------------------------
+// Quiz
 
 // function Person(name, age) {
 //     this.name = name;
@@ -254,6 +255,7 @@
 // }
 
 // new Person('Ria', 3);
+
 
 //------------------------------------------------------
 // => symbols
@@ -277,10 +279,7 @@
 // if (e1[javaSymbol]) {
 //     console.log('welcome java guy');
 // }
-
-
 //-------------------------------------------------
-
 
 // let menu = ['biryani-1', 'biryani-2', 'biryani-3'];
 
@@ -310,3 +309,7 @@
 
 // let ids = [...idMaker];
 // let [id1, id2, id3] = idMaker;
+
+// summary : all iterable objects are spreadable,de-structurable & we can use with for-of loop
+
+//--------------------------------------------------------------------------

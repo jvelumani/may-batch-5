@@ -72,7 +72,6 @@
 
     soln : using 'let' & 'const' keywords from ES6  with block-scope
 */
-
 //---------------------------------------------------
 // console.log(v);
 // let v = 12;

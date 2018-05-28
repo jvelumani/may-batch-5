@@ -1,5 +1,4 @@
-
-
+//----------------------------------------------------
 // ES5 - class
 
 // function Person(name, age) {
@@ -16,7 +15,6 @@
 //--------------------------------------------------------
 
 // Es6 - class
-
 class Person {
     constructor(name, age) {
         this.name = name;
@@ -30,7 +28,6 @@ class Person {
         console.log('im ' + this.age + " old..");
     }
 }
-
 class Employee extends Person {
     constructor(name, age, salary) {
         super(name, age);
@@ -44,7 +41,6 @@ class Employee extends Person {
         return this.salary * 0.02;
     }
 }
-
 class Boss extends Employee {
     askForBonus() {
         return this.salary * 0.2 + super.askForBonus();
@@ -52,6 +48,7 @@ class Boss extends Employee {
 }
 
 var o = new Boss('Nag', 34, 1000);
+
 
 
 class Abc {

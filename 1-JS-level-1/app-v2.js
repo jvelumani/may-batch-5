@@ -15,16 +15,13 @@ function sessionStart() {
             return doLearn;
         }
     }
-
     class Employee {
         constructor(name) {
             this.name;
         }
     }
-
-
     let tnr = new Trainer('Nag');
-
+    
     let e1 = new Employee('A');
     let e2 = new Employee('B');
 

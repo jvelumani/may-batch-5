@@ -11,7 +11,10 @@
   => always get hoist with function-obj
 */
 // 2. function expression
-
+/*
+  => Anonymous function
+  => function-obj created at scope-execution phase
+*/
 //----------------------------------------------------
 
 // 1. function declaration
@@ -130,7 +133,6 @@
 // }
 // func(undefined, 20, 30, 40, 50, 50);
 
-
 // e.g
 
 // function sum() {
@@ -157,7 +159,6 @@
 // }
 
 // console.log(getFood());
-
 
 //----------------------------------------------------
 
@@ -189,7 +190,7 @@
 
 //----------------------------------------------------
 // function-closures
-
+//----------------------------------------------------
 /*
     A closure is a function having access to the parent scope,
     even after the parent function has closed.
@@ -214,7 +215,6 @@
 //----------------------------------------------------
 
 // why / where we need closures ?
-
 /*
     => to abstract public-behav of module
     => while executing func async, to access parent-scoped data
@@ -222,16 +222,13 @@
 //----------------------------------------------------
 
 // => to abstract public-behav of module
-
 // e.g
-
 /*
     e.g counter-module
         - count
         - doCount()
         - getCount()
 */
-
 // self-executable function   or IIFE  // module design pattern
 
 // const counter = (function () {
@@ -250,16 +247,11 @@
 // })();
 
 //----------------------------------------------------
-
-
 // Function-binding
-
 /*
     1. static function-binding
     2. dynamic function-binding
 */
-
-
 //----------------------------------------------------
 
 // 1. static function-binding
@@ -287,7 +279,6 @@
 let p = { name: 'Nag' }
 let e = { name: 'IBM' }
 
-
 let greetLib = {
     name: 'greet-lib',
     sayName: function (message, from) {
@@ -297,6 +288,7 @@ let greetLib = {
 // greetLib.sayName();
 
 // static function-binding
+
 // p.sayName = greetLib.sayName;
 // let newP = { name: 'person', sayName: greetLib.sayName }
 // p.sayName();
@@ -320,7 +312,7 @@ let greetLib = {
 // empSayName("dude", "universe")
 
 //----------------------------------------------------
-
+// summary
 /*
     in .js-lang , we can invoke functions in 3 ways
     1. function-invocation
@@ -344,12 +336,8 @@ let greetLib = {
 // let o2 = { name: 'B' }
 // func.call(o2); // dynamic function-binding
 
-
 //----------------------------------------------------
-
-
 // Quiz
-
 let tnr = {
     name: 'Nag',
     doTeach: function () {
@@ -362,15 +350,14 @@ let tnr = {
         return learn;
     }
 }
-
 // today
 let learnFunc = tnr.doTeach();
 // learnFunc();
 let emp = { name: 'IBM' }
 learnFunc.call(emp)
-
 // tomo
 let tempTnr = { name: 'Praveen' }
 learnFunc = tnr.doTeach.call(tempTnr);
 learnFunc.call(emp)
 
+//----------------------------------------------------

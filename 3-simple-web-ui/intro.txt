@@ -1,0 +1,104 @@
+
+
+
+web tech
+------------------------------------------------------
+
+    HTML ==> content
+    CSS  ==> style
+    JavaScript ==> behavior
+
+------------------------------------------------------
+
+what .js-lang can do with HTML-page in browser-envi?
+
+using browser provided web-APIs,
+JavaScript-lang can bring any dynamic activity/data to web-page
+
+
+browser web-APIs  ==> are based on 'w3c' recommendations 
+browser implemented all web-APIs natively & abstracted as JavaScript objects & functions
+
+
+browser-APIs  :
+    ==> DOM, XHR/fetch,Timer,....
+
+using DOM API
+--------------
+ -> can create,retreive,update,delete HTML elements
+ -> can change element's inner text/html content 
+ -> can change element's attributes/properties
+ -> can change element's styles ( css )
+ -> canlisten events on elements
+ -> can validate form-fields 
+ -> can create rich UI-components
+
+using XHR/fetch
+----------------
+-> can communicate with server-side programs async ( AJAX )
+
+using Timer API
+----------------
+-> can execute any action on timeout/time-interval
+
+HTML-5 :
+---------------
+
+=> https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5
+
+---------------------------------------------------------
+
+server-side page techonologies
+  i.e JSP , PHP , ASP.net , etc.......
+
+  problems:
+    => on every req, server shud re-construct same UI layout with different content , keeping client state
+    => on every resp, we r sending same resources ( css, js , images , fonts ) over n/w , increase n/w bandwidth
+    => on every resp, browser re-loads current page with new-page
+
+---------------------------------------------------------
+
+
+plain-js ( our-code ) with browser-apis : problems
+--------------------------------------------------
+
+=> browser compatability issues
+=> memory issues ( i.e clean un-used DOM elements)
+=> performance issues ( i.e must ne minimal DOM changes)
+=> data-binding is manual
+=> too much code for simple operations
+=> code organizations is too difficult
+
+
+soln :
+
+ using third-party's JavaScript lib & F.Ws
+
+
+ 1. jQuery  : ==> DOM utility lib
+
+ MVC/ MVVM based lib & F.Ws
+
+ 2. knockout
+ 3. backbone
+ 4. Ember
+ 5. AngularJS from google-team
+ 6. DOJO 
+ 7. ExtJS from sencha
+ .......
+
+
+ w3c ==> web-components/custom  html-elements standard
+
+component based lib & F.Ws 
+
+ 8. ReactJS from face-book team  ( v16)
+ 9. Angular    : v6
+ 10. Aurelia
+ 11. Vue
+ 12. polymer
+
+
+
+
+
