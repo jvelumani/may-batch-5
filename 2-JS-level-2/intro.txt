@@ -1,0 +1,35 @@
+
+
+ECMAScript-2015 or ES6
+--------------------------
+
+new-syntax
+------------
+
+    => let & const keywords with block-scope
+    => string inerpolation
+    => function with default & rest params
+    => New OOP with class-syntax
+    => de-structuring
+    => spread operator
+    => obj-literal enhancements
+    => arrow-function
+    => symbols
+    => for-of-loop
+
+
+-----------------------------------------------
+
+New-apis
+
+    => enhanced core apis ( string , number , object )
+    => collection api ( set , map )
+    => async api => promise api
+    ........
+
+---------------------------------------------------
+
+module-standard:
+
+    => es modules  ( i.e import , export )    
+
