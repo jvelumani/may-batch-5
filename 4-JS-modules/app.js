@@ -20,7 +20,9 @@ greetMod.greet();
 // or
 // import * as items from './hotel/menu';
 
-
+//------------------------------------------------------------
 
 import item, { item2, item3 } from './hotel/menu';
-item2=null; // error
+item2=null; // error , becoz all imported members are const reference
+
+//------------------------------------------------------------

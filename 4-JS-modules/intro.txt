@@ -55,7 +55,6 @@ commonJS module-standard
  // in Es6
 
  ES module standard
-
     
  -> every .js-file is module
  -> all variable & functions are private to module by default
