@@ -5,10 +5,7 @@ class ReviewForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isOpen: false,
-            stars: 4,
-            author: 'nag@gmail.com',
-            body: ''
+            isOpen: false
         }
     }
     toggleForm() {
@@ -17,28 +14,18 @@ class ReviewForm extends Component {
     }
     handleForm(e) {
         e.preventDefault();
-        let { stars, author, body } = this.state;
+        console.log('handling form...');
         let newReview = {
-            stars,
-            author,
-            body
+            stars: this.refs.stars.value,
+            author: this.refs.author.value,
+            body: this.refs.body.value
         }
         let { onNewReview } = this.props;
         onNewReview(newReview);
         this.toggleForm();
     }
-    handleChange(e) {
-        let field = e.target.id;
-        let fieldValue = e.target.value;
-        this.setState({ [field]: fieldValue });
-    }
-    disableSubmitBtn() {
-        let { stars } = this.state;
-        if (stars < 4) return true
-        else return false;
-    }
     renderForm() {
-        let { isOpen, stars, author, body } = this.state;
+        let { isOpen } = this.state;
         if (isOpen) {
             return (
                 <div className="card">
@@ -47,20 +34,19 @@ class ReviewForm extends Component {
                         <form onSubmit={(e) => { this.handleForm(e) }}>
                             <div className="form-group">
                                 <label>stars</label>
-                                <select className="form-control" id="stars" onChange={(e) => { this.handleChange(e) }} value={stars}>
+                                <select className="form-control" ref="stars">
                                     {[1, 2, 3, 4, 5].map((n, idx) => <option key={idx}>{n}</option>)}
                                 </select>
-                                {stars < 4 ? 'give me 4 or 5 stars' : ''}
                             </div>
                             <div className="form-group">
                                 <label>author</label>
-                                <input className="form-control" id="author" onChange={(e) => { this.handleChange(e) }} value={author} />
+                                <input className="form-control" ref="author" />
                             </div>
                             <div className="form-group">
                                 <label>body</label>
-                                <textarea className="form-control" id="body" onChange={(e) => { this.handleChange(e) }} value={body}></textarea>
+                                <textarea className="form-control" ref="body"></textarea>
                             </div>
-                            <button disabled={this.disableSubmitBtn()} className="btn btn-primary">submit</button>
+                            <button className="btn btn-primary">submit</button>
                             <button className="btn btn-danger" onClick={() => { this.toggleForm() }} type="button">cancel</button>
                         </form>
                     </div>

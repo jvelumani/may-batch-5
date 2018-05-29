@@ -8,18 +8,35 @@ class Product extends Component {
         super(props);
         this.state = {
             currentTab: 1,
-            reviews: [
-                { stars: 5, author: 'who@mail.com', body: 'sample review' },
-            ]
+            reviews: []
         }
     }
     changeTab(tab) {
-        this.setState({ currentTab: tab });
+        this.setState({ currentTab: tab }, () => {
+            let { product } = this.props;
+            let apiUrl = `http://0.0.0.0:8080/api/products/${product.id}/reviews`
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(reviews => {
+                    reviews = reviews || []
+                    this.setState({ reviews })
+                });
+        });
     }
     handleNewReview(review) {
-        let { reviews } = this.state;
-        reviews = reviews.concat(review);
-        this.setState({ reviews });
+        let { product } = this.props;
+        let apiUrl = `http://0.0.0.0:8080/api/products/${product.id}/reviews`
+        fetch(apiUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(review)
+        })
+            .then(response => response.json())
+            .then(review => {
+                let { reviews } = this.state;
+                reviews = reviews.concat(review);
+                this.setState({ reviews });
+            });
     }
     handleBuyBtnClick() {
         let { product, onBuy } = this.props;
@@ -27,7 +44,7 @@ class Product extends Component {
         onBuy(product, Number.parseInt(qty, 10));
     }
     renderBuyBtn(product) {
-        if (product.canBuy) return (
+        if (true) return (
             <div>
                 <button className="btn btn-sm btn-primary" onClick={() => { this.handleBuyBtnClick() }}>buy</button>
                 &nbsp;

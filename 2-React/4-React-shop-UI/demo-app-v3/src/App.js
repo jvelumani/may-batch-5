@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import Product from './Product';
 import ViewCart from './ViewCart'
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
+import Home from './Home';
+import ProductList from './ProductList';
+
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isCartOpen: false,
       cart: {},
       products: [
         {
@@ -29,10 +36,6 @@ class App extends Component {
       ]
     };
   }
-  toggleCart() {
-    let { isCartOpen } = this.state;
-    this.setState({ isCartOpen: !isCartOpen });
-  }
   addToCart(item, qty) {
     let { cart } = this.state;
     let id = item.id;
@@ -45,37 +48,34 @@ class App extends Component {
     cart = Object.assign({}, cart, { [id]: line });
     this.setState({ cart });
   }
-  renderProducts() {
-    let { products, isCartOpen, cart } = this.state;
-    if (!isCartOpen) {
-      return products.map((product, idx) => {
-        return (
-          <Product product={product} key={idx} onBuy={(item, qty) => { this.addToCart(item, qty) }} />
-        );
-      });
-    } else {
-      return <ViewCart cart={cart} />
-    }
-  }
+
   render() {
     let { title } = this.props;
-    let { cart, isCartOpen } = this.state;
+    let { cart, products } = this.state;
     let count = Object.keys(cart).length
     return (
-      <div className="container">
-        <nav className="navbar navbar-light bg-primary">
-          <span className="navbar-brand mb-0 h1">{title}</span>
-        </nav>
-        <hr />
-        <i className="fa fa-shopping-cart"></i>
-        {count} item(s) in cart
-        |
-        <a href="#/" className="pull-right" onClick={() => { this.toggleCart() }}>{isCartOpen ? 'View products' : 'View cart'}</a>
-        <hr />
-        <div className="list-group">
-          {this.renderProducts()}
+      <Router>
+        <div className="container">
+          <nav className="navbar navbar-light bg-primary">
+            <Link className="navbar-brand" to="/">{title}</Link>
+          </nav>
+          <hr />
+          <i className="fa fa-shopping-cart"></i>
+          {count} item(s) in cart
+          |
+          &nbsp;
+          <Link to="/products">View products</Link>
+          &nbsp;
+          |
+          <Link to="/view-cart" className="pull-right"> View cart</Link>
+          <hr />
+
+          <Route exact={true} path="/" component={Home} />
+          <Route path="/products" render={() => <ProductList products={products} onBuy={(item, qty) => { this.addToCart(item, qty) }} />} />
+          <Route path="/view-cart" render={() => <ViewCart cart={cart} />} />
+
         </div>
-      </div>
+      </Router>
     );
   }
 }
