@@ -43,7 +43,6 @@ class Product extends Component {
                 panel = (
                     <div>
                         {this.renderReviews()}
-                        <hr />
                         <ReviewForm />
                     </div>
                 )
