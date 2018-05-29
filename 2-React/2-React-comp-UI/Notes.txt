@@ -1,0 +1,8 @@
+
+
+
+
+
+- transpile  :  ES6 & JSX code to ES5  : babel
+- module bundling                      : webpack
+

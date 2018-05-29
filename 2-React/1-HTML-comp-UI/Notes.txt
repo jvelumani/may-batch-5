@@ -1,0 +1,58 @@
+
+
+
+HTML component/element/tag
+---------------------------
+
+
+=> every html-tag/element/component
+   is an instance of HTMLXXXElement class
+
+
+ e.g
+
+ <div></div>  instanceof 'HTMLDivElement' class
+
+
+ i.e
+
+  HTMLDivElement      ==> component-class
+  <div></div>         ==> component
+
+
+ 
+-------------------------------------------
+
+2 types of HTML-components
+
+    - stateless
+    - stateful
+
+
+html-component
+--------------
+
+- props    ==> data given by parent-component 
+- state    ==> comp's own data
+
+
+ e.g input-element   ==> statefull component
+
+         state : i.e 'value'
+
+ imp-note : when component's state changes,
+                    always will 're-render'   
+
+----------------------------------------------
+
+
+-------------------------------------------
+
+'uni-directional data-flow'
+
+    data/props will go down
+    action/event will come up
+
+
+
+--------------------------------------------                             
