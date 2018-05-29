@@ -15,13 +15,14 @@ class ActionButton extends Component {
     }
     handleBtnClick() {
         let { count } = this.state; //
+        let { value } = this.props;
         count++;
         this.setState({ count }, () => {
             let { onAction } = this.props;
             if (onAction) {
                 setTimeout(() => {
-                    onAction();
-                }, 2000);
+                    onAction(value * count);
+                }, 0);
             }
         });
 
@@ -30,12 +31,13 @@ class ActionButton extends Component {
         console.log('ActionButton :: render()');
         let { value } = this.props;
         let { count } = this.state;
+        let className = `btn ${value > 0 ? 'btn-success' : 'btn-danger'}`
         return (
             <div className="action-button">
                 <div className="card">
                     <div className="card-body">
-                        <button className="btn btn-primary" onClick={() => { this.handleBtnClick() }}>
-                            {value} : <span className="badge badge-danger">{count}</span>
+                        <button className={className} onClick={() => { this.handleBtnClick() }}>
+                            {value} : <span className="badge badge-dark">{count}</span>
                         </button>
                     </div>
                 </div>

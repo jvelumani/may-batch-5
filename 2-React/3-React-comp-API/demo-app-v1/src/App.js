@@ -15,9 +15,9 @@ class App extends Component {
     console.log('App :: constructor()');
     // console.log(props);
   }
-  incrementTotalCount() {
+  incrementTotalCount(v) {
     let { totalCount } = this.state;
-    totalCount++;
+    totalCount += v;
     this.setState({ totalCount });
   }
   render() {
@@ -34,9 +34,17 @@ class App extends Component {
         <div className="card">
           <div className="card-header"> App Component : <span className="badge badge-danger">{totalCount}</span></div>
           <div className="card-body">
-            <ActionButton value={10} onAction={() => { this.incrementTotalCount() }} />
-            <ActionButton value={-10} onAction={() => { this.incrementTotalCount() }} />
-            <ActionButton value={100} onAction={() => { this.incrementTotalCount() }} />
+
+            {/* 
+            <ActionButton value={10} onAction={(v) => { this.incrementTotalCount(v) }} />
+            <ActionButton value={-10} onAction={(v) => { this.incrementTotalCount(v) }} />
+            <ActionButton value={100} onAction={(v) => { this.incrementTotalCount(v) }} />
+            */}
+
+            {[1, -1, 5, -5, 10, -10, 100, -100].map((n, idx) => {
+              return <ActionButton key={idx} value={n} onAction={(v) => { this.incrementTotalCount(v) }} />
+            })}
+
             <div style={{ clear: 'both' }}>
               <hr />
               <TotalCountDisplay value={totalCount} />
