@@ -1,0 +1,20 @@
+
+
+
+ e.g : counter-ui
+
+    ==> state :- count
+
+    ==> action(s) :- INCREMENT,DECREMENT,....
+
+    ==> reducer(s) :- counterRedeucer()... 
+
+e.g : shop-ui
+
+   ==> state :- products,reviews,cart,.....
+
+   ==> action(s) :- LOAD_PRODUCTS,LOAD_REVIEWS,ADD_NEW_REVIEW,BUY,..... 
+
+   ==> reducer(s) : productsReducer,reviewReducer,cartReducer,...
+
+-----------------------------------------------------   
