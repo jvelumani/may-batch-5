@@ -71,4 +71,31 @@ level-3 :
     - http://exploringjs.com/
     - https://developer.mozilla.org/bm/docs/Web/JavaScript
 
-----------------------------------------------------------------    
+-----------------------------------------------------
+
+
+.js-lang is
+
+
+
+ -> all IO-operations are non-blocking
+ -> single-threaded process , can execute concurrent actions due to non-blocking IO
+
+
+
+  browser e.g chrome
+
+    --------------------------------------------------
+
+    1. javascript-runtime/engine  : ECMAScript spec
+        1. call-stack   ==> to execute functions
+        2. heap         ==> to hold objects 
+    2. web-apis ( DOM , fetch , timer , html5 apis) : w3c reccomendations    
+    3. Event-Queue
+    4. Event-Loop
+
+    --------------------------------------------------
+
+    ref : https://developer.mozilla.org/bm/docs/Web/JavaScript/EventLoop
+    ref : http://latentflip.com/loupe
+
