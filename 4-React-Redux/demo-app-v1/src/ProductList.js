@@ -11,11 +11,9 @@ class ProductList extends Component {
         this.state = {
             products: []
         }
-    }
+    } 
     componentDidMount() {
-
-        store.subscribe(() => {
-            console.log('ProductList subscribing redux-store changes');
+        this.unscribe = store.subscribe(() => {
             let state = store.getState();
             let products = state.products || [];
             this.setState({ products });
@@ -24,14 +22,16 @@ class ProductList extends Component {
         setTimeout(() => {
             let action = loadProducts();
             store.dispatch(action);
-        }, 2000);
+        }, 1000);
+    }
+    componentWillUnmount() {
+        this.unscribe();
     }
     renderProducts() {
-        let { onBuy } = this.props;
         let { products } = this.state;
         return products.map((product, idx) => {
             return (
-                <Product product={product} key={idx} onBuy={onBuy} />
+                <Product product={product} key={idx} />
             );
         });
     }

@@ -2,47 +2,34 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import Review from './Review';
 import ReviewForm from './ReviewForm';
-import store from './store';
 import { loadReviews, addNewRview } from './actions/reviews'
 import { buy } from './actions/cart';
- 
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
+
 class Product extends Component {
     constructor(props) {
         super(props);
         this.state = {
             currentTab: 1,
-            reviews: []
         }
-    }
-    componentDidMount() {
-        let { product } = this.props;
-        this.unscribe = store.subscribe(() => {
-            let reviews = store.getState().reviews[product.id] || []
-            this.setState({ reviews });
-        });
-    }
-    componentWillUnmount() {
-        this.unscribe();
     }
     changeTab(tab) {
         this.setState({ currentTab: tab }, () => {
-            let { product } = this.props;
+            let { product, actions } = this.props;
             if (tab === 3) {
-                let action = loadReviews(product.id);
-                store.dispatch(action);
+                actions.loadReviews(product.id);
             }
         });
     }
     handleNewReview(review) {
-        let { product } = this.props;
-        let action = addNewRview(product.id, review);
-        store.dispatch(action);
+        let { product, actions } = this.props;
+        actions.addNewRview(product.id, review);
     }
     handleBuyBtnClick() {
-        let { product} = this.props;
+        let { product, actions } = this.props;
         let qty = this.refs.qtyField.value;
-        let action = buy(product, Number.parseInt(qty, 10));
-        store.dispatch(action);
+        actions.buy(product, Number.parseInt(qty, 10));
     }
     renderBuyBtn(product) {
         if (true) return (
@@ -57,7 +44,7 @@ class Product extends Component {
         else return null;
     }
     renderReviews() {
-        let { reviews } = this.state;
+        let { reviews } = this.props;
         return reviews.map((review, idx) => {
             return <Review review={review} key={idx} />
         });
@@ -124,4 +111,16 @@ class Product extends Component {
     }
 }
 
-export default Product;
+function mapStateToProps(state, props) {
+    return {
+        reviews: state.reviews[props.product.id] || []
+    }
+}
+function mapDispatchToProps(dispatch) {
+    let actions = { loadReviews, addNewRview, buy };
+    return {
+        actions: bindActionCreators(actions, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Product);

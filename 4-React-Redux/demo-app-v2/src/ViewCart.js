@@ -1,16 +1,16 @@
 import React from 'react';
 
-import store from './store';
 import { buy } from './actions/cart';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
 
 let total_amount = 0;
 
-function buyHandler(item, count) {
-    let action = buy(item, count);
-    store.dispatch(action);
+function buyHandler(item, count, props) {
+    props.actions.buy(item, count);
 }
 
-function renderCartItems(cart) {
+function renderCartItems(cart, props) {
     let keys = Object.keys(cart);
     return keys.map((key, idx) => {
         let line = cart[key];
@@ -23,19 +23,19 @@ function renderCartItems(cart) {
                 <td>{item.name}</td>
                 <td>&#8377;{item.price}</td>
                 <td>
-                    <i className="fa fa-plus" onClick={() => { buyHandler(item, 1) }}></i>
+                    <i className="fa fa-plus" onClick={() => { buyHandler(item, 1, props) }}></i>
                     &nbsp;
                 {qty}
                     &nbsp;
-                <i className="fa fa-minus" onClick={() => { buyHandler(item, -1) }}></i>
+                <i className="fa fa-minus" onClick={() => { buyHandler(item, -1, props) }}></i>
                 </td>
                 <td>&#8377;{qty * item.price}</td>
             </tr>
         );
     });
 }
- 
-export default (props) => {
+
+const ViewCart = (props) => {
     let { cart } = props;
     return (
         <div className="card">
@@ -52,7 +52,7 @@ export default (props) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {renderCartItems(cart)}
+                        {renderCartItems(cart, props)}
                     </tbody>
                 </table>
                 Total Amount : &#8377;{total_amount}
@@ -60,3 +60,13 @@ export default (props) => {
         </div>
     );
 }
+
+
+function mapDispatchToProps(dispatch) {
+    let actions = { buy };
+    return {
+        actions: bindActionCreators(actions, dispatch)
+    }
+}
+
+export default connect(null, mapDispatchToProps)(ViewCart);

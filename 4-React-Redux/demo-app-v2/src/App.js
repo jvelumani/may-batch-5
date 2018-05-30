@@ -9,25 +9,12 @@ import {
 } from 'react-router-dom'
 import Home from './Home';
 import ProductList from './ProductList';
+import { connect } from 'react-redux';
 
-import store from './store';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cart: {}
-    };
-  }
-  componentDidMount() {
-    store.subscribe(() => {
-      let cart = store.getState().cart;
-      this.setState({ cart });
-    });
-  }
   render() {
-    let { title } = this.props;
-    let { cart } = this.state;
+    let { title, cart } = this.props;
     let count = Object.keys(cart).length
     return (
       <Router>
@@ -53,8 +40,13 @@ class App extends Component {
         </div>
       </Router>
     );
-    
+
   }
 }
 
-export default App;
+function mapStateToProps(state, props) {
+  return {
+    cart: state.cart
+  };
+}
+export default connect(mapStateToProps, null)(App);
