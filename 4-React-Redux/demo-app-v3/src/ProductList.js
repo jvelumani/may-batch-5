@@ -4,7 +4,7 @@ import Product from './Product';
 
 import { loadProducts } from './actions/products'
 import { connect } from 'react-redux';
-import { bindActionCreators } from '../../../../../Library/Caches/typescript/2.7/node_modules/@types/react-redux/node_modules/redux';
+import { bindActionCreators } from 'redux';
 
 class ProductList extends Component {
     componentDidMount() {
